@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='style_lots.css') }}">
-<script src="{{ url_for('static', filename='lots_script.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_lots.css') }}">
+
 
 {% endblock %}
 
@@ -45,14 +45,14 @@
       <a href="{{ url_for('item_page', item_id=lot.id) }}">{{ lot.name }}</a>
       <p>{{ lot.description }}</p>
       <p>Стартова ціна: ${{ lot.start_price }}</p>
-      <p>Поточна ціна: ${{ lot.current_price }}</p>
-      <p>Власник: {{ users[lot.owner]['first_name'] }} {{ users[lot.owner]['last_name'] }}</p>
+      <p>Поточна ціна: <span id="current_price">${{ lot.current_price }}</span></p>
+      <p>Власник: <span id="owner">{{ users[lot.owner]['first_name'] }} {{ users[lot.owner]['last_name'] }}</span></p>
       <p>Створено: {{ lot.created_at }}</p>
 
-      <form onsubmit="placeBid({{ lot.id }});">
+      <form id="bid_form">
         <div class="form-group">
-            <label for="bid-{{ lot.id }}">Ваша ставка:</label>
-            <input type="number" class="form-control" id="bid-{{ lot.id }}" name="bid" min="{{ lot.current_price }}" required>
+            <label for="{{ lot.id }}">Ваша ставка:</label>
+            <input type="number" class="form-control" id="{{ lot.id }}" min="{{ lot.current_price }}" required>
         </div>
         {% if session['username'] %}
             <button type="submit" class="btn btn-success">Поставити ставку</button>
@@ -123,4 +123,5 @@
 <p>Немає активних лотів.</p>
 {% endif %}
 
+<script src="{{ url_for('static', filename='js/lots_script.js') }}"></script>
 {% endblock %}

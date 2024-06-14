@@ -61,7 +61,7 @@ nav ul {
   }
   
   .buton {
-    background-image: url('button.png');
+    background-image: url('../img/button.png');
       background-size: cover; /* Зображення покриває всю кнопку */
       background-position: center; /* Центрування зображення */
       width: 50px; /* Ширина кнопки */
