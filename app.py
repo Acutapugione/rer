@@ -8,7 +8,7 @@ import uuid
 
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key"
+app.secret_key = "your_secret_key"  # TODO: .env file for secrets???
 app.config["UPLOAD_FOLDER"] = "static/uploads"
 
 if not os.path.exists(app.config["UPLOAD_FOLDER"]):
